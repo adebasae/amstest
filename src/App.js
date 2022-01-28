@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 // import logo from './logo.svg';
 
 import './App.css';
-import Test from './components/Test';
+import Card from './components/Card';
 
 import './assets/scss/globals.scss';
 
@@ -19,7 +19,7 @@ function App() {
 
           {/* defautl */}
 
-          <Route path="/" exact component={Test} />
+          <Route path="/" exact component={Card} />
         </Switch>
       </Layout>
     </Router>
