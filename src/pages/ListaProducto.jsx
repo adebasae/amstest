@@ -3,10 +3,9 @@ import ProductService from '../services/ProductService';
 
 function ListProduct() {
   const [products, setProducts] = useState([]);
-  console.log(setProducts);
   useEffect(() => {
-    ProductService.getAllProduct().then((res) => {
-      setProducts(res);
+    ProductService.getAllProducts().then((res) => {
+      setProducts(res.data);
     });
   }, []);
   const percent = ` Lista de productos ${products.length} `;

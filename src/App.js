@@ -4,10 +4,10 @@ import Layout from './components/Layout';
 // import logo from './logo.svg';
 
 import './App.css';
-import Card from './components/Card';
+// import Card from './components/Card';
 
 import './assets/scss/globals.scss';
-// import ListProduct from './pages/ListaProducto';
+import ListProduct from './pages/ListaProducto';
 
 function App() {
   const routes = (
@@ -20,7 +20,7 @@ function App() {
 
           {/* defautl */}
 
-          <Route path="/" exact component={Card} />
+          <Route path="/" exact component={ListProduct} />
         </Switch>
       </Layout>
     </Router>
