@@ -5,7 +5,7 @@ function ListProduct() {
   const [products, setProducts] = useState([]);
   console.log(setProducts);
   useEffect(() => {
-    ProductService.getAllProduct().then((res) => {
+    ProductService.getAllProducts().then((res) => {
       setProducts(res);
     });
   }, []);
