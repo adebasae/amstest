@@ -7,6 +7,7 @@ import './App.css';
 import Card from './components/Card';
 
 import './assets/scss/globals.scss';
+// import ListProduct from './pages/ListaProducto';
 
 function App() {
   const routes = (

@@ -1,16 +1,16 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { getCookie } from '../components/utils';
+// import { getCookie } from '../components/utils';
 
 const api = Axios.create({
   baseURL: process.env.REACT_APP_API,
   // withCredentials: false,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json; charset=utf-8',
-  },
+    'Content-Type': 'application/json; charset=utf-8'
+  }
 });
-api.defaults.headers.Authorization = `Bearer ${getCookie('token')}`;
+// api.defaults.headers.Authorization = `Bearer ${getCookie('token')}`;
 
 // api.interceptors.request.use(
 //   (config) => {
@@ -38,11 +38,9 @@ export const removeBearerToken = () => {
 export const routes = {
   login: '/security/get/token',
   me: 'rest/get/config',
-  access: `/rest/user/header/es/get/header`,
+  access: `/rest/user/header/es/get/header`
 };
 
-export const getCookies = () => {
-  return Cookies;
-};
+export const getCookies = () => Cookies;
 
 export default api;
