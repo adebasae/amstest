@@ -28,7 +28,7 @@ function Card() {
             distribution of letters, as opposed
           </p>
         </div>
-        <div className="buttons d-flex flex-row gap-3 px-3">
+        <div className="buttons d-flex flex-row gap-3 px-3 w-75">
           <button type="button" className="btn btn-outline-danger w-100">
             Buy Now
           </button>
@@ -59,7 +59,7 @@ function Card() {
             distribution of letters, as opposed
           </p>
         </div>
-        <div className="buttons d-flex flex-row gap-3 px-3">
+        <div className="buttons d-flex flex-row gap-3 px-3 w-100">
           <button type="button" className="btn btn-outline-danger w-100">
             Buy Now
           </button>
