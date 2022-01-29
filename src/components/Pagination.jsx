@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const LEFT_PAGE = 'LEFT';
@@ -16,64 +16,54 @@ const range = (from, to, step = 1) => {
   return r;
 };
 
-class Pagination extends Component {
-  constructor(props) {
-    super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
+function Pagination({
+  records,
+  onPageChanged,
+  pageLimit = 30,
+  pageNeighbours = 0
+}) {
+  const [totalRecords, setTotalRecords] = useState(records);
+  const [currentPage, setCurrentPage] = useState();
 
-    this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 30;
-    this.totalRecords = typeof totalRecords === 'number' ? totalRecords : 0;
+  const totalPages = Math.ceil(totalRecords / pageLimit);
 
-    this.pageNeighbours =
-      typeof pageNeighbours === 'number'
-        ? Math.max(0, Math.min(pageNeighbours, 2))
-        : 0;
+  useEffect(() => {
+    setTotalRecords(records);
+  }, [records]);
 
-    this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-
-    this.state = { currentPage: 1 };
-  }
-
-  componentDidMount() {
-    this.gotoPage(1);
-  }
-
-  gotoPage = (page) => {
-    const { onPageChanged = (f) => f } = this.props;
-
-    const currentPage = Math.max(0, Math.min(page, this.totalPages));
-
+  const gotoPage = (page) => {
+    const current = Math.max(0, Math.min(page, totalPages));
     const paginationData = {
-      currentPage,
-      totalPages: this.totalPages,
-      pageLimit: this.pageLimit,
-      totalRecords: this.totalRecords
+      currentPage: current,
+      totalPages,
+      pageLimit,
+      totalRecords
     };
 
-    this.setState({ currentPage }, () => onPageChanged(paginationData));
+    setCurrentPage(current);
+    onPageChanged(paginationData);
   };
 
-  handleClick = (page, evt) => {
+  useEffect(() => {
+    gotoPage(1);
+  }, []);
+
+  const handleClick = (page, evt) => {
     evt.preventDefault();
-    this.gotoPage(page);
+    gotoPage(page);
   };
 
-  handleMoveLeft = (evt) => {
-    const { currentPage } = this.state;
+  const handleMoveLeft = (evt) => {
     evt.preventDefault();
-    this.gotoPage(currentPage - this.pageNeighbours * 2 - 1);
+    gotoPage(currentPage - pageNeighbours * 2 - 1);
   };
 
-  handleMoveRight = (evt) => {
+  const handleMoveRight = (evt) => {
     evt.preventDefault();
-    const { currentPage } = this.state;
-    this.gotoPage(currentPage + this.pageNeighbours * 2 + 1);
+    gotoPage(currentPage + pageNeighbours * 2 + 1);
   };
 
-  fetchPageNumbers = () => {
-    const { totalPages, pageNeighbours } = this;
-    const { currentPage } = this.state;
-
+  const fetchPageNumbers = () => {
     const totalNumbers = pageNeighbours * 2 + 3;
     const totalBlocks = totalNumbers + 2;
 
@@ -114,69 +104,63 @@ class Pagination extends Component {
     return range(1, totalPages);
   };
 
-  render() {
-    if (!this.totalRecords) return null;
+  if (!totalRecords) return null;
+  if (totalPages === 1) return null;
 
-    if (this.totalPages === 1) return null;
+  const pages = fetchPageNumbers();
 
-    const { currentPage } = this.state;
-    const pages = this.fetchPageNumbers();
-
-    return (
-      <nav aria-label="Pagination">
-        <ul className="pagination">
-          {pages.map((page) => {
-            if (page === LEFT_PAGE)
-              return (
-                <li className="page-item">
-                  <button
-                    type="button"
-                    className="page-link"
-                    href="#"
-                    aria-label="Previous"
-                    onClick={this.handleMoveLeft}
-                  >
-                    <span aria-hidden="true">&laquo;</span>
-                    <span className="sr-only">Previous</span>
-                  </button>
-                </li>
-              );
-
-            if (page === RIGHT_PAGE)
-              return (
-                <li className="page-item">
-                  <button
-                    type="button"
-                    className="page-link"
-                    href="#"
-                    aria-label="Next"
-                    onClick={this.handleMoveRight}
-                  >
-                    <span aria-hidden="true">&raquo;</span>
-                    <span className="sr-only">Next</span>
-                  </button>
-                </li>
-              );
-
+  return (
+    <nav aria-label="Pagination">
+      <ul className="pagination">
+        {pages.map((page) => {
+          if (page === LEFT_PAGE)
             return (
-              <li
-                className={`page-item${currentPage === page ? ' active' : ''}`}
-              >
+              <li className="page-item">
                 <button
                   type="button"
                   className="page-link"
                   href="#"
-                  onClick={(e) => this.handleClick(page, e)}
+                  aria-label="Previous"
+                  onClick={handleMoveLeft}
                 >
-                  {page}
+                  <span aria-hidden="true">&laquo;</span>
+                  <span className="sr-only">Previous</span>
                 </button>
               </li>
             );
-          })}
-        </ul>
-      </nav>
-    );
-  }
+
+          if (page === RIGHT_PAGE)
+            return (
+              <li className="page-item">
+                <button
+                  type="button"
+                  className="page-link"
+                  href="#"
+                  aria-label="Next"
+                  onClick={handleMoveRight}
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span className="sr-only">Next</span>
+                </button>
+              </li>
+            );
+
+          return (
+            <li className={`page-item${currentPage === page ? ' active' : ''}`}>
+              <button
+                type="button"
+                className="page-link"
+                href="#"
+                onClick={(e) => handleClick(page, e)}
+              >
+                {page}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
 }
 
 // Specifies the default values for props:
@@ -186,7 +170,7 @@ Pagination.defaultProps = {
 };
 
 Pagination.propTypes = {
-  totalRecords: PropTypes.number.isRequired,
+  records: PropTypes.number.isRequired,
   pageLimit: PropTypes.number,
   pageNeighbours: PropTypes.number,
   onPageChanged: PropTypes.func.isRequired
