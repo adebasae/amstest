@@ -28,19 +28,13 @@ function ListProduct() {
   //   .trim();
 
   const onPageChanged = (data) => {
-    console.log('data', data);
     const { currentPage, totalPages, pageLimit } = data;
-
     const offset = (currentPage - 1) * pageLimit;
     const currentProducts = products.slice(offset, offset + pageLimit);
     setPaginationSetting({ currentProducts, currentPage, totalPages });
   };
 
   const listaProducto = () => {
-    console.log(
-      'paginationSetting.currentProducts',
-      paginationSetting.currentProducts
-    );
     return paginationSetting.currentProducts.length === 0 ? (
       <p>poner spinner</p>
     ) : (
@@ -63,24 +57,6 @@ function ListProduct() {
     <div className="container card-container d-flex ">
       {listaProducto()}
       <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-        {/* <div className="d-flex flex-row align-items-center">
-          <h2 className={headerClass}>
-            <strong className="text-secondary">{products.length}</strong>
-            Products
-          </h2>
-          {paginationSetting.currentPage && (
-            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-              Page{' '}
-              <span className="font-weight-bold">
-                {paginationSetting.currentPage}
-              </span>{' '}
-              /{' '}
-              <span className="font-weight-bold">
-                {paginationSetting.totalPages}
-              </span>
-            </span>
-          )}
-        </div> */}
         <div className="d-flex flex-row py-4 align-items-center mx-auto">
           <Pagination
             totalRecords={totalProducts}
