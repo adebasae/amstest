@@ -1,11 +1,8 @@
 /* Pagination Component 
 -------------------------------------------------*/
+import React from 'react';
 
-const propTypes = {
-  items: React.PropTypes.array.isRequired,
-  onChangePage: React.PropTypes.func.isRequired,
-  initialPage: React.PropTypes.number
-};
+import PropTypes from 'prop-types';
 
 const defaultProps = {
   initialPage: 1
@@ -19,23 +16,26 @@ class Pagination extends React.Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // set page if items array isn't empty
-    if (this.props.items && this.props.items.length) {
-      this.setPage(this.props.initialPage);
+    const { items, initialPage } = this.props;
+    if (items && items.length) {
+      this.setPage(initialPage);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     // reset page if items array has changed
-    if (this.props.items !== prevProps.items) {
-      this.setPage(this.props.initialPage);
+    console.log(prevState);
+    const { items, initialPage } = this.props;
+    if (items !== prevProps.items) {
+      this.setPage(initialPage);
     }
   }
 
   setPage(page) {
-    var items = this.props.items;
-    var pager = this.state.pager;
+    const { items, onChangePage } = this.props;
+    let { pager } = this.state;
 
     if (page < 1 || page > pager.totalPages) {
       return;
@@ -45,29 +45,30 @@ class Pagination extends React.Component {
     pager = this.getPager(items.length, page, 10, 10);
 
     // get new page of items from items array
-    var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+    const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
     // update state
-    this.setState({ pager: pager });
+    this.setState({ pager });
 
     // call change page function in parent component
-    this.props.onChangePage(pageOfItems);
+    onChangePage(pageOfItems);
   }
 
-  getPager(totalItems, currentPage, pageSize, maxPagesToDisplay) {
+  getPager(totalItems, currentPag, pageSiz, maxPagesToDis) {
     // default to first page
-    currentPage = currentPage || 1;
+    const currentPage = currentPag || 1;
 
     // default page size is 10
-    pageSize = pageSize || 10;
+    const pageSize = pageSiz || 10;
 
     // default max pages to display is 10
-    maxPagesToDisplay = maxPagesToDisplay || 10;
+    const maxPagesToDisplay = maxPagesToDis || 10;
 
     // calculate total pages
-    var totalPages = Math.ceil(totalItems / pageSize);
+    const totalPages = Math.ceil(totalItems / pageSize);
 
-    var startPage, endPage;
+    let startPage;
+    let endPage;
     if (totalPages <= maxPagesToDisplay) {
       // less than 10 total pages so show all
       startPage = 1;
@@ -75,9 +76,9 @@ class Pagination extends React.Component {
     } else {
       // more than 10 total pages so calculate start and end pages
 
-      var halfwayPoint = Math.ceil(maxPagesToDisplay / 2);
-      var pastHalfwayPoint = Math.floor(maxPagesToDisplay / 2) + 1;
-      var beforeHalfwayPoint = halfwayPoint - 1;
+      const halfwayPoint = Math.ceil(maxPagesToDisplay / 2);
+      const pastHalfwayPoint = Math.floor(maxPagesToDisplay / 2) + 1;
+      const beforeHalfwayPoint = halfwayPoint - 1;
       if (currentPage <= pastHalfwayPoint) {
         startPage = 1;
         endPage = maxPagesToDisplay;
@@ -152,5 +153,12 @@ class Pagination extends React.Component {
   }
 }
 
-Pagination.propTypes = propTypes;
+Pagination.propTypes = {
+  items: PropTypes.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  initialPage: PropTypes.number
+};
+
 Pagination.defaultProps = defaultProps;
+
+export default Pagination;
