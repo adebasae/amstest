@@ -16,15 +16,20 @@ function ListProduct() {
     });
   }, []);
 
-  const headerClass = [
-    'text-dark py-2 pr-4 m-0',
-    paginationSetting.currentPage ? 'border-gray border-right' : ''
-  ]
-    .join(' ')
-    .trim();
+  const totalProducts = products.length;
 
-  const onPageChanged = (pageLimit) => {
-    const { currentPage, totalPages } = paginationSetting;
+  if (totalProducts === 0) return null;
+
+  // const headerClass = [
+  //   'text-dark py-2 pr-4 m-0',
+  //   paginationSetting.currentPage ? 'border-gray border-right' : ''
+  // ]
+  //   .join(' ')
+  //   .trim();
+
+  const onPageChanged = (data) => {
+    console.log('data', data);
+    const { currentPage, totalPages, pageLimit } = data;
 
     const offset = (currentPage - 1) * pageLimit;
     const currentProducts = products.slice(offset, offset + pageLimit);
@@ -56,10 +61,12 @@ function ListProduct() {
 
   return (
     <div className="container card-container d-flex ">
+      {listaProducto()}
       <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-        <div className="d-flex flex-row align-items-center">
+        {/* <div className="d-flex flex-row align-items-center">
           <h2 className={headerClass}>
-            <strong className="text-secondary">{products}</strong> Countries
+            <strong className="text-secondary">{products.length}</strong>
+            Products
           </h2>
           {paginationSetting.currentPage && (
             <span className="current-page d-inline-block h-100 pl-4 text-secondary">
@@ -73,18 +80,16 @@ function ListProduct() {
               </span>
             </span>
           )}
-        </div>
-        <div className="d-flex flex-row py-4 align-items-center">
+        </div> */}
+        <div className="d-flex flex-row py-4 align-items-center mx-auto">
           <Pagination
-            totalRecords={products}
-            pageLimit={18}
+            totalRecords={totalProducts}
+            pageLimit={1}
             pageNeighbours={1}
-            onPageChanged={() => onPageChanged(18)}
+            onPageChanged={onPageChanged}
           />
         </div>
       </div>
-
-      {listaProducto()}
     </div>
   );
 }

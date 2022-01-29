@@ -36,7 +36,7 @@ function Card(props) {
         <button
           type="button"
           onClick={() => comprar()}
-          className="btn btn-outline-danger w-100"
+          className="btn btn-outline-primary w-100"
         >
           Comprar
         </button>
