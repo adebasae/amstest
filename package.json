@@ -11,6 +11,7 @@
     "js-cookie": "^3.0.1",
     "modularscale-sass": "^3.0.10",
     "node-sass": "^5.0.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.4",
     "react-bootstrap-table": "^4.3.1",

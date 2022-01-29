@@ -7,9 +7,6 @@
   position: relative;
   overflow: hidden;
 }
-.card-container {
-  flex-wrap: wrap;
-}
 
 .p-2 {
   margin: 1.5rem;
@@ -42,11 +39,6 @@
   transition: all 0.5s;
 }
 
-.card:hover .heart i {
-  animation: heart 300ms ease-in forwards;
-  animation-delay: 500ms;
-}
-
 .p-about {
   position: absolute;
   width: 170px;
@@ -71,10 +63,10 @@
   }
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
-}
+// .card:hover {
+//   transform: scale(1.05);
+//   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+// }
 
 @keyframes heart {
   0% {
@@ -90,9 +82,9 @@
   animation: onimage 300ms ease-in forwards;
 }
 
-.card:hover .p-price {
-  animation: onprice 500ms ease-in forwards;
-}
+// .card:hover .p-price {
+//   animation: onprice 500ms ease-in forwards;
+// }
 
 @keyframes onprice {
   0% {
@@ -154,4 +146,13 @@
   font-size: 16px;
   width: 140px !important;
   font-weight: 600;
+}
+
+.card-container {
+  flex-wrap: wrap;
+}
+
+.card:hover .heart i {
+  animation: heart 300ms ease-in forwards;
+  animation-delay: 500ms;
 }
