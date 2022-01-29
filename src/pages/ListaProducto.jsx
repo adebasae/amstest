@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import ProductService from '../services/ProductService';
 import Card from '../components/Card';
+import Pagination from '../components/Pagination';
 
 function ListProduct() {
   const [products, setProducts] = useState([]);
+  const [paginationSetting, setPaginationSetting] = useState({
+    currentProducts: [],
+    currentPage: null,
+    totalPages: null
+  });
   useEffect(() => {
     ProductService.getAllProducts().then((res) => {
       setProducts(res.data);
     });
   }, []);
 
-  const listaProducto = () =>
-    products.length === 0
-      ? 'poner spinner'
-      : products.map(({ imagen, description, marca, modelo, precio, id }) => (
+  const headerClass = [
+    'text-dark py-2 pr-4 m-0',
+    paginationSetting.currentPage ? 'border-gray border-right' : ''
+  ]
+    .join(' ')
+    .trim();
+
+  const onPageChanged = (pageLimit) => {
+    const { currentPage, totalPages } = paginationSetting;
+
+    const offset = (currentPage - 1) * pageLimit;
+    const currentProducts = products.slice(offset, offset + pageLimit);
+    setPaginationSetting({ currentProducts, currentPage, totalPages });
+  };
+
+  const listaProducto = () => {
+    console.log(
+      'paginationSetting.currentProducts',
+      paginationSetting.currentProducts
+    );
+    return paginationSetting.currentProducts.length === 0 ? (
+      <p>poner spinner</p>
+    ) : (
+      paginationSetting.currentProducts.map(
+        ({ imagen, description, marca, modelo, precio, id }) => (
           <Card
             key={id}
             imagen={imagen}
@@ -22,9 +49,43 @@ function ListProduct() {
             modelo={modelo}
             precio={precio}
           />
-        ));
+        )
+      )
+    );
+  };
+
   return (
-    <div className="container card-container d-flex ">{listaProducto()}</div>
+    <div className="container card-container d-flex ">
+      <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+        <div className="d-flex flex-row align-items-center">
+          <h2 className={headerClass}>
+            <strong className="text-secondary">{products}</strong> Countries
+          </h2>
+          {paginationSetting.currentPage && (
+            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+              Page{' '}
+              <span className="font-weight-bold">
+                {paginationSetting.currentPage}
+              </span>{' '}
+              /{' '}
+              <span className="font-weight-bold">
+                {paginationSetting.totalPages}
+              </span>
+            </span>
+          )}
+        </div>
+        <div className="d-flex flex-row py-4 align-items-center">
+          <Pagination
+            totalRecords={products}
+            pageLimit={18}
+            pageNeighbours={1}
+            onPageChanged={() => onPageChanged(18)}
+          />
+        </div>
+      </div>
+
+      {listaProducto()}
+    </div>
   );
 }
 
