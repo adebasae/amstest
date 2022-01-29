@@ -7,7 +7,7 @@ function Card(props) {
   const history = useHistory();
 
   const comprar = () => {
-    const path = `/detalles`;
+    const path = `/detalles/1`;
     history.push(path);
   };
 

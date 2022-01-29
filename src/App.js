@@ -17,7 +17,7 @@ function App() {
         <Switch>
           {/* detalles */}
 
-          <Route path="/detalles" component={Test} />
+          <Route path="/detalles/:id" component={Test} />
 
           {/* defautl */}
 
