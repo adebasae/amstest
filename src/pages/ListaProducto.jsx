@@ -20,13 +20,6 @@ function ListProduct() {
 
   if (totalProducts === 0) return null;
 
-  // const headerClass = [
-  //   'text-dark py-2 pr-4 m-0',
-  //   paginationSetting.currentPage ? 'border-gray border-right' : ''
-  // ]
-  //   .join(' ')
-  //   .trim();
-
   const onPageChanged = (data) => {
     const { currentPage, totalPages, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
@@ -34,8 +27,8 @@ function ListProduct() {
     setPaginationSetting({ currentProducts, currentPage, totalPages });
   };
 
-  const listaProducto = () => {
-    return paginationSetting.currentProducts.length === 0 ? (
+  const productList = () =>
+    paginationSetting.currentProducts.length === 0 ? (
       <p>poner spinner</p>
     ) : (
       paginationSetting.currentProducts.map(
@@ -51,11 +44,9 @@ function ListProduct() {
         )
       )
     );
-  };
-
   return (
     <div className="container card-container d-flex ">
-      {listaProducto()}
+      {productList()}
       <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
         <div className="d-flex flex-row py-4 align-items-center mx-auto">
           <Pagination
