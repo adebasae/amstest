@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Form, Col, InputGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ProductService from '../services/ProductService';
 import Card from '../components/Card';
 import Pagination from '../components/Pagination';
+import isEmpty from '../components/utils';
 
 function ListProduct() {
   const [products, setProducts] = useState([]);
@@ -18,13 +23,29 @@ function ListProduct() {
 
   const totalProducts = products.length;
 
-  if (totalProducts === 0) return null;
-
   const onPageChanged = (data) => {
     const { currentPage, totalPages, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
     const currentProducts = products.slice(offset, offset + pageLimit);
     setPaginationSetting({ currentProducts, currentPage, totalPages });
+  };
+
+  const filter = (text) => {
+    ProductService.getAllProducts().then((res) => {
+      const productsInitial = res.data;
+      let filtered = productsInitial;
+      if (productsInitial.length > 0) {
+        if (!isEmpty(text)) {
+          const lowerCaseText = text.toLowerCase();
+          filtered = productsInitial.filter(
+            (x) =>
+              x.marca.toLowerCase().includes(lowerCaseText) ||
+              x.modelo.toLowerCase().includes(lowerCaseText)
+          );
+        }
+      }
+      setProducts(filtered);
+    });
   };
 
   const productList = () =>
@@ -46,17 +67,44 @@ function ListProduct() {
     );
   return (
     <div className="container card-container d-flex ">
-      {productList()}
-      <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-        <div className="d-flex flex-row py-4 align-items-center mx-auto">
-          <Pagination
-            totalRecords={totalProducts}
-            pageLimit={1}
-            pageNeighbours={1}
-            onPageChanged={onPageChanged}
-          />
+      <div className="w-100 d-flex flex-row flex-wrap">
+        <h2>Lista de Productos</h2>
+        <div className="ms-auto">
+          <Form.Row>
+            <Form.Group as={Col}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>
+                    <FontAwesomeIcon icon={faSearch} />
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={(e) => filter(e.target.value)}
+                  type="text"
+                  placeholder="Buscar aqui.."
+                />
+              </InputGroup>
+            </Form.Group>
+          </Form.Row>
         </div>
       </div>
+      {totalProducts !== 0 ? (
+        <>
+          {productList()}
+          <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+            <div className="d-flex flex-row py-4 align-items-center mx-auto">
+              <Pagination
+                totalRecords={totalProducts}
+                pageLimit={1}
+                pageNeighbours={1}
+                onPageChanged={onPageChanged}
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <span className="w-100 text-center">No hay Productos</span>
+      )}
     </div>
   );
 }
