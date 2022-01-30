@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
-
+import Select from 'react-select';
 import ProductService from '../services/ProductService';
+
+const colores = [
+  { label: 'Azul', value: '1' },
+  { label: 'Amarrillo', value: '2' },
+  { label: 'Rojo', value: '3' },
+  { label: 'Verde', value: '4' }
+];
+
+const store = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+  { label: '4', value: '4' }
+];
 
 function Details(props) {
   const { match } = props;
@@ -18,9 +32,12 @@ function Details(props) {
   const DIMENSIONES = 'Dimensiones';
   const MARCA = 'Marca';
   const SISTEMA = 'Sistema Operativo';
+
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [selectedStore, setSelectedStore] = useState([]);
+
   useEffect(() => {
     ProductService.getProductById(match.params.id).then((res) => {
-      console.log('res', res);
       setDetail(res.data);
     });
   }, []);
@@ -28,15 +45,15 @@ function Details(props) {
   if (detail === undefined) return 'no hay detalles';
 
   return (
-    <div id="productDetails">
-      <div className="container card-container d-flex ">
+    <div id="productDetails" className="container d-flex">
+      <div className=" card-container d-flex ">
         <div className="w-100 d-flex flex-row flex-wrap">
           <h2>Detalles</h2>
         </div>
       </div>
-      <div className="w-100 px-4 d-flex flex-row flex-wrap align-items-center justify-content-between">
-        <div className="w-100 d-flex flex-row py-4 ">
-          <div className="w-50">
+      <div className=" w-100  px-4 d-flex flex-row flex-wrap align-items-center justify-content-between">
+        <div className="w-100 d-flex flex-row flex-wrap py-4 ">
+          <div className="w-30 left-container">
             <div className="wh">
               <img
                 className="img-fluid"
@@ -46,83 +63,116 @@ function Details(props) {
             </div>
           </div>
           <div className="w-50">
-            <div className="d-flex flex-column  ">
+            <div>
+              <input
+                type="checkbox"
+                className="read-more-state"
+                id="post-detail"
+              />
+
               <div>
                 <input
                   type="checkbox"
                   className="read-more-state"
-                  id="post-detail"
+                  id="post-2"
                 />
 
-                <div>
-                  <input
-                    type="checkbox"
-                    className="read-more-state"
-                    id="post-2"
-                  />
+                <div className="read-more-wrap">
+                  <Card className="w-75 read-more-wrap h-auto">
+                    <Card.Body>
+                      <Card.Title>{detail.descripcion}</Card.Title>
 
-                  <div className="read-more-wrap">
-                    <Card className="w-75 read-more-wrap h-auto">
-                      <Card.Body>
-                        <Card.Title>{detail.descripcion}</Card.Title>
+                      <Card.Text className=" px-2">
+                        <span>{`${MODELO}:`}</span>
+                        {` ${detail.modelo}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2">
+                        <span>{`${PRECIO}:`}</span>
+                        {` ${detail.precio}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2">
+                        <span>{`${CPU}:`}</span>
+                        {` ${detail.cpu}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2">
+                        <span>{`${RAM}:`}</span>
+                        {` ${detail.ram}`}
+                      </Card.Text>
 
-                        <Card.Text className=" px-2">
-                          <span>{`${MODELO}:`}</span>
-                          {` ${detail.modelo}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2">
-                          <span>{`${PRECIO}:`}</span>
-                          {` ${detail.precio}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2">
-                          <span>{`${CPU}:`}</span>
-                          {` ${detail.cpu}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2">
-                          <span>{`${RAM}:`}</span>
-                          {` ${detail.ram}`}
-                        </Card.Text>
-
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${RESOLUCION}:`}</span>
-                          {` ${detail.resolucion}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${BATERIA}:`}</span>
-                          {` ${detail.bateria}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${CAMARA}:`}</span>
-                          {` ${detail.camara}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${PESO}:`}</span>
-                          {` ${detail.peso}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${DIMENSIONES}:`}</span>
-                          {` ${detail.dimensiones}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${SISTEMA}:`}</span>
-                          {` ${detail.sistema}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${MARCA}:`}</span>
-                          {` ${detail.marca}`}
-                        </Card.Text>
-                        <Card.Text className=" px-2 read-more-target">
-                          <span>{`${SISTEMA}:`}</span>
-                          {` ${detail.sistema}`}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </div>
-
-                  <label htmlFor="post-2" className="read-more-trigger" />
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${RESOLUCION}:`}</span>
+                        {` ${detail.resolucion}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${BATERIA}:`}</span>
+                        {` ${detail.bateria}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${CAMARA}:`}</span>
+                        {` ${detail.camara}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${PESO}:`}</span>
+                        {` ${detail.peso}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${DIMENSIONES}:`}</span>
+                        {` ${detail.dimensiones}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${SISTEMA}:`}</span>
+                        {` ${detail.sistema}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${MARCA}:`}</span>
+                        {` ${detail.marca}`}
+                      </Card.Text>
+                      <Card.Text className=" px-2 read-more-target">
+                        <span>{`${SISTEMA}:`}</span>
+                        {` ${detail.sistema}`}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
                 </div>
+
+                <label htmlFor="post-2" className="read-more-trigger" />
               </div>
             </div>
+          </div>
+          <div className="w-20">
+            <Select
+              className="py-2"
+              classNamePrefix="select "
+              isSearchable
+              name="color"
+              options={colores}
+              onChange={(e) => {
+                setSelectedColor(e);
+              }}
+              placeholder="Seleccione Color..."
+              value={selectedColor}
+            />
+
+            <Select
+              className="py-2"
+              classNamePrefix="select "
+              isSearchable
+              name="color"
+              options={store}
+              onChange={(e) => {
+                setSelectedStore(e);
+              }}
+              placeholder="Seleccione Almacenamiento..."
+              value={selectedStore}
+            />
+
+            <button
+              type="button"
+              //   onClick={() => comprar()}
+              className="btn btn-outline-primary w-40"
+            >
+              Añadir
+            </button>
           </div>
         </div>
       </div>

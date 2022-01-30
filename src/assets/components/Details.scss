@@ -29,18 +29,18 @@
   }
 
   .read-more-state ~ .read-more-trigger:before {
-    content: 'Show more';
+    content: 'Ver más';
   }
 
   .read-more-state:checked ~ .read-more-trigger:before {
-    content: 'Show less';
+    content: 'Ver menos';
   }
 
   .read-more-trigger {
     cursor: pointer;
     display: inline-block;
     padding: 0 0.5em;
-    color: #666;
+    color: #664;
     font-size: 0.9em;
     line-height: 2;
     border: 1px solid #ddd;
@@ -54,9 +54,16 @@
 
   p {
     padding: 2%;
-    background: #fff9c6;
-    color: #c7b27e;
-    border: 1px solid #fce29f;
+    // background: #fff9c6;
+    // color: #c7b27e;
+    margin-bottom: 0.25rem;
+    border: 1px solid #fce;
     border-radius: 0.25em;
+  }
+
+  .left-container {
+    position: sticky;
+    top: 20%;
+    height: 100%;
   }
 }
