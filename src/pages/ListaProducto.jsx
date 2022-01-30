@@ -13,7 +13,7 @@ function ListProduct() {
   const [products, setProducts] = useState([]);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  const itemsPerPage = 2;
+  const itemsPerPage = 4;
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
