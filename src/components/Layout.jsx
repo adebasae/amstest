@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Header from './Header';
 
 function Layout({ children }) {
-  console.log(children);
   return (
     <>
       <Header />

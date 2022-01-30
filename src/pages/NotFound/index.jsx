@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 
-const NotFound = () => {
+function NotFound() {
   const redirect = () => {
     document.location.href = '/';
   };
@@ -39,6 +39,6 @@ const NotFound = () => {
       </section>
     </Layout>
   );
-};
+}
 
 export default NotFound;
