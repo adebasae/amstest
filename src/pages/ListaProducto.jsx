@@ -109,12 +109,12 @@ function ListProduct() {
           <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
             <div className="d-flex flex-row py-4 align-items-center mx-auto">
               <ReactPaginate
-                nextLabel="next >"
+                nextLabel="siguiente >"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={3}
                 marginPagesDisplayed={2}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="< anterior"
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
                 previousClassName="page-item"
