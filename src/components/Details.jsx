@@ -62,7 +62,7 @@ function Details(props) {
                   />
 
                   <div className="read-more-wrap">
-                    <Card className="w-75 read-more-wrap">
+                    <Card className="w-75 read-more-wrap h-auto">
                       <Card.Body>
                         <Card.Title>{detail.descripcion}</Card.Title>
 
@@ -82,6 +82,7 @@ function Details(props) {
                           <span>{`${RAM}:`}</span>
                           {` ${detail.ram}`}
                         </Card.Text>
+
                         <Card.Text className=" px-2 read-more-target">
                           <span>{`${RESOLUCION}:`}</span>
                           {` ${detail.resolucion}`}
