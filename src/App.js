@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 
 import './App.css';
 // import Card from './components/Card';
-import Test from './components/Test';
+import Details from './components/Details';
 
 import './assets/scss/globals.scss';
 import ListProduct from './pages/ListaProducto';
@@ -17,7 +17,7 @@ function App() {
         <Switch>
           {/* detalles */}
 
-          <Route path="/detalles/:id" component={Test} />
+          <Route path="/detalles/:id" component={Details} />
 
           {/* defautl */}
 

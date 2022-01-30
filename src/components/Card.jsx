@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
 function Card(props) {
-  const { imagen, description, marca, modelo, precio } = props;
+  const { imagen, description, marca, modelo, precio, id } = props;
   const history = useHistory();
 
   const comprar = () => {
-    const path = `/detalles/1`;
+    const path = `/detalles/${id}`;
     history.push(path);
   };
 
