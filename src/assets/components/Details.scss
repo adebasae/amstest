@@ -26,10 +26,6 @@
     max-height: 999em;
   }
 
-  .card {
-    height: fit-content;
-  }
-
   .read-more-state ~ .read-more-trigger:before {
     content: 'Show more';
   }
