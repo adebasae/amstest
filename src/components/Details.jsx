@@ -45,136 +45,125 @@ function Details(props) {
   if (detail === undefined) return 'no hay detalles';
 
   return (
-    <div id="productDetails" className="container d-flex">
-      <div className=" card-container d-flex ">
-        <div className="w-100 d-flex flex-row flex-wrap">
-          <h2>Detalles</h2>
+    <div
+      id="productDetails"
+      className="container flex-wrap justify-content-between card-container d-flex  flex-row"
+    >
+      <div className="w-100 d-flex flex-row ">
+        <h2>Detalles</h2>
+      </div>
+      <div className=" left-container">
+        <div className="wh">
+          <img
+            className="img-fluid"
+            alt={detail.imagen.alt}
+            src={detail.imagen.src}
+          />
         </div>
       </div>
-      <div className=" w-100  px-4 d-flex flex-row flex-wrap align-items-center justify-content-between">
-        <div className="w-100 d-flex flex-row flex-wrap py-4 ">
-          <div className="w-30 left-container">
-            <div className="wh">
-              <img
-                className="img-fluid"
-                alt={detail.imagen.alt}
-                src={detail.imagen.src}
-              />
+      <div className="">
+        <div>
+          <input type="checkbox" className="read-more-state" id="post-detail" />
+
+          <div>
+            <input type="checkbox" className="read-more-state" id="post-2" />
+
+            <div className="read-more-wrap">
+              <Card className=" read-more-wrap h-auto">
+                <Card.Body>
+                  <Card.Title>{detail.descripcion}</Card.Title>
+
+                  <Card.Text className=" px-2">
+                    <span>{`${MODELO}:`}</span>
+                    {` ${detail.modelo}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2">
+                    <span>{`${PRECIO}:`}</span>
+                    {` ${detail.precio}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2">
+                    <span>{`${CPU}:`}</span>
+                    {` ${detail.cpu}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2">
+                    <span>{`${RAM}:`}</span>
+                    {` ${detail.ram}`}
+                  </Card.Text>
+
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${RESOLUCION}:`}</span>
+                    {` ${detail.resolucion}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${BATERIA}:`}</span>
+                    {` ${detail.bateria}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${CAMARA}:`}</span>
+                    {` ${detail.camara}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${PESO}:`}</span>
+                    {` ${detail.peso}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${DIMENSIONES}:`}</span>
+                    {` ${detail.dimensiones}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${SISTEMA}:`}</span>
+                    {` ${detail.sistema}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${MARCA}:`}</span>
+                    {` ${detail.marca}`}
+                  </Card.Text>
+                  <Card.Text className=" px-2 read-more-target">
+                    <span>{`${SISTEMA}:`}</span>
+                    {` ${detail.sistema}`}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             </div>
-          </div>
-          <div className="w-50">
-            <div>
-              <input
-                type="checkbox"
-                className="read-more-state"
-                id="post-detail"
-              />
 
-              <div>
-                <input
-                  type="checkbox"
-                  className="read-more-state"
-                  id="post-2"
-                />
-
-                <div className="read-more-wrap">
-                  <Card className="w-75 read-more-wrap h-auto">
-                    <Card.Body>
-                      <Card.Title>{detail.descripcion}</Card.Title>
-
-                      <Card.Text className=" px-2">
-                        <span>{`${MODELO}:`}</span>
-                        {` ${detail.modelo}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2">
-                        <span>{`${PRECIO}:`}</span>
-                        {` ${detail.precio}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2">
-                        <span>{`${CPU}:`}</span>
-                        {` ${detail.cpu}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2">
-                        <span>{`${RAM}:`}</span>
-                        {` ${detail.ram}`}
-                      </Card.Text>
-
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${RESOLUCION}:`}</span>
-                        {` ${detail.resolucion}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${BATERIA}:`}</span>
-                        {` ${detail.bateria}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${CAMARA}:`}</span>
-                        {` ${detail.camara}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${PESO}:`}</span>
-                        {` ${detail.peso}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${DIMENSIONES}:`}</span>
-                        {` ${detail.dimensiones}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${SISTEMA}:`}</span>
-                        {` ${detail.sistema}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${MARCA}:`}</span>
-                        {` ${detail.marca}`}
-                      </Card.Text>
-                      <Card.Text className=" px-2 read-more-target">
-                        <span>{`${SISTEMA}:`}</span>
-                        {` ${detail.sistema}`}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-
-                <label htmlFor="post-2" className="read-more-trigger" />
-              </div>
-            </div>
-          </div>
-          <div className="w-20">
-            <Select
-              className="py-2"
-              classNamePrefix="select "
-              isSearchable
-              name="color"
-              options={colores}
-              onChange={(e) => {
-                setSelectedColor(e);
-              }}
-              placeholder="Seleccione Color..."
-              value={selectedColor}
-            />
-
-            <Select
-              className="py-2"
-              classNamePrefix="select "
-              isSearchable
-              name="color"
-              options={store}
-              onChange={(e) => {
-                setSelectedStore(e);
-              }}
-              placeholder="Seleccione Almacenamiento..."
-              value={selectedStore}
-            />
-
-            <button
-              type="button"
-              //   onClick={() => comprar()}
-              className="btn btn-outline-primary w-40"
-            >
-              Añadir
-            </button>
+            <label htmlFor="post-2" className="read-more-trigger" />
           </div>
         </div>
+      </div>
+      <div className="">
+        <Select
+          className="py-2"
+          classNamePrefix="select "
+          isSearchable
+          name="color"
+          options={colores}
+          onChange={(e) => {
+            setSelectedColor(e);
+          }}
+          placeholder="Seleccione Color..."
+          value={selectedColor}
+        />
+
+        <Select
+          className="py-2"
+          classNamePrefix="select "
+          isSearchable
+          name="color"
+          options={store}
+          onChange={(e) => {
+            setSelectedStore(e);
+          }}
+          placeholder="Seleccione Almacenamiento..."
+          value={selectedStore}
+        />
+
+        <button
+          type="button"
+          //   onClick={() => comprar()}
+          className="btn btn-outline-primary w-40"
+        >
+          Añadir
+        </button>
       </div>
     </div>
   );
