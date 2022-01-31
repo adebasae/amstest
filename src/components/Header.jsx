@@ -8,8 +8,11 @@ import Logo from '../assets/images/Logo.png';
 
 import Carrito from '../assets/images/carrito.png';
 import Perfil from '../assets/images/perfil.png';
+import useAppContext from '../hooks/useAppContext';
 
 function Header() {
+  const { carCount } = useAppContext();
+
   return (
     <header className="header" style={{ marginBottom: '10px' }}>
       <Navbar bg="light" expand="lg">
@@ -30,6 +33,7 @@ function Header() {
           </div>
           <div>
             <Image alt="Carrito" src={Carrito} className="header-btn-right" />
+            <span className="carNumber">{carCount}</span>
           </div>
         </div>
 

@@ -21,12 +21,12 @@ const storeBD = [
 function Details(props) {
   const { match } = props;
   const [detail, setDetail] = useState();
-  const { setCarCount } = useAppContext();
+  const { setCarCount, carCount } = useAppContext();
 
   // Para cambio de idioma la internacionalización se hace a estas variables
 
   const NO_DETAILS = 'No hay detalles';
-
+  const ADD = 'Añadir';
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedStore, setSelectedStore] = useState([]);
 
@@ -41,7 +41,8 @@ function Details(props) {
   const comprar = (color, store, id) => {
     ProductService.addCar(parseInt(color, 10), parseInt(store, 10), id).then(
       (res) => {
-        setCarCount(res.data);
+        if (res === undefined) return;
+        setCarCount(carCount + res.data.count);
       }
     );
   };
@@ -121,7 +122,7 @@ function Details(props) {
             selectedStore.value === undefined
           }
         >
-          Añadir
+          {ADD}
         </button>
       </div>
     </div>

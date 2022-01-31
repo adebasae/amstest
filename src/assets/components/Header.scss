@@ -25,4 +25,17 @@
       margin-left: auto;
     }
   }
+
+  .carNumber {
+    color: white;
+    position: relative;
+    right: 34px;
+    width: 14px;
+    height: 14px;
+    bottom: 17px;
+    background: blue;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 50%;
+  }
 }
