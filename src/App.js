@@ -5,10 +5,10 @@ import Layout from './components/Layout';
 
 import './App.css';
 // import Card from './components/Card';
-import Details from './components/Details';
 
 import './assets/scss/globals.scss';
 import ListProduct from './pages/ListaProducto';
+import Details from './pages/Details';
 
 function App() {
   const routes = (
