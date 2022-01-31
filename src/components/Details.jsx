@@ -55,7 +55,7 @@ function Details(props) {
       <div className="w-100 d-flex flex-row py-3 ">
         <h2>Detalles</h2>
       </div>
-      <div className=" left-container">
+      <div className="sticky">
         <div className="wh">
           <img
             className="img-fluid"
@@ -133,7 +133,7 @@ function Details(props) {
           </div>
         </div>
       </div>
-      <div style={{ width: '274px' }}>
+      <div className=" sticky" style={{ top: '2%', width: '274px' }}>
         <Select
           className="py-2"
           classNamePrefix="select "
