@@ -52,7 +52,7 @@ function Details(props) {
       id="productDetails"
       className="container flex-wrap justify-content-between card-container d-flex  flex-row"
     >
-      <div className="w-100 d-flex flex-row ">
+      <div className="w-100 d-flex flex-row py-3 ">
         <h2>Detalles</h2>
       </div>
       <div className=" left-container">
