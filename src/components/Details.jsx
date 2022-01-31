@@ -21,6 +21,8 @@ function Details(props) {
   const { match } = props;
   const [detail, setDetail] = useState();
 
+  // Para cambio de idioma la internacionalización se hace a estas variables
+
   const MODELO = 'Modelo';
   const PRECIO = 'Precio';
   const CPU = 'CPU';
@@ -32,6 +34,7 @@ function Details(props) {
   const DIMENSIONES = 'Dimensiones';
   const MARCA = 'Marca';
   const SISTEMA = 'Sistema Operativo';
+  const NO_DETAILS = 'No hay detalles';
 
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedStore, setSelectedStore] = useState([]);
@@ -42,7 +45,7 @@ function Details(props) {
     });
   }, []);
 
-  if (detail === undefined) return 'no hay detalles';
+  if (detail === undefined) return NO_DETAILS;
 
   return (
     <div
