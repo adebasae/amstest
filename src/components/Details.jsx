@@ -133,24 +133,30 @@ function Details(props) {
           </div>
         </div>
       </div>
-      <div className="">
+      <div style={{ width: '274px' }}>
         <Select
           className="py-2"
           classNamePrefix="select "
           isSearchable
           name="color"
+          menuPlacement="auto"
+          menuPosition="fixed"
           options={colores}
           onChange={(e) => {
             setSelectedColor(e);
           }}
           placeholder="Seleccione Color..."
           value={selectedColor}
+          autosize={false}
         />
 
         <Select
           className="py-2"
           classNamePrefix="select "
           isSearchable
+          menuPlacement="auto"
+          menuPosition="fixed"
+          autosize={false}
           name="color"
           options={store}
           onChange={(e) => {
