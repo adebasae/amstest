@@ -15,9 +15,9 @@ function Header() {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand as={Link} to="/">
           <Image
-            alt="NovaView"
+            alt="Logo"
             src={Logo}
-            style={{ width: 200, marginTop: -7 }}
+            style={{ width: 60, marginTop: -7, marginLeft: 26 }}
           />
         </Navbar.Brand>
 
