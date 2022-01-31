@@ -10,7 +10,7 @@ export const removeCookie = (name) => {
   cookies.set(name, '', { path: '/', expires: new Date(Date.now()) });
 };
 
-export const sendServer = (nameCookie, path) => {
+export const sendServerWithCookie = (nameCookie, path) => {
   const cookies = new Cookies();
   const cookie = cookies.get(nameCookie);
 

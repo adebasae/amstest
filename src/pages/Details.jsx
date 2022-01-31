@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Detail from '../components/Detail';
 import ProductService from '../services/ProductService';
+import useAppContext from '../hooks/useAppContext';
 
-const colores = [
+const coloresBD = [
   { label: 'Azul', value: '1' },
   { label: 'Amarrillo', value: '2' },
   { label: 'Rojo', value: '3' },
   { label: 'Verde', value: '4' }
 ];
 
-const store = [
+const storeBD = [
   { label: '1', value: '1' },
   { label: '2', value: '2' },
   { label: '3', value: '3' },
@@ -20,6 +21,7 @@ const store = [
 function Details(props) {
   const { match } = props;
   const [detail, setDetail] = useState();
+  const { setCarCount } = useAppContext();
 
   // Para cambio de idioma la internacionalización se hace a estas variables
 
@@ -35,6 +37,14 @@ function Details(props) {
   }, []);
 
   if (detail === undefined) return NO_DETAILS;
+
+  const comprar = (color, store, id) => {
+    ProductService.addCar(parseInt(color, 10), parseInt(store, 10), id).then(
+      (res) => {
+        setCarCount(res.data);
+      }
+    );
+  };
 
   return (
     <div
@@ -75,7 +85,7 @@ function Details(props) {
           name="color"
           menuPlacement="auto"
           menuPosition="fixed"
-          options={colores}
+          options={coloresBD}
           onChange={(e) => {
             setSelectedColor(e);
           }}
@@ -92,7 +102,7 @@ function Details(props) {
           menuPosition="fixed"
           autosize={false}
           name="color"
-          options={store}
+          options={storeBD}
           onChange={(e) => {
             setSelectedStore(e);
           }}
@@ -102,8 +112,14 @@ function Details(props) {
 
         <button
           type="button"
-          //   onClick={() => comprar()}
+          onClick={() =>
+            comprar(selectedColor.value, selectedStore.value, match.params.id)
+          }
           className="btn btn-outline-primary w-40 float-end"
+          disabled={
+            selectedColor.value === undefined ||
+            selectedStore.value === undefined
+          }
         >
           Añadir
         </button>

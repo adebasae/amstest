@@ -1,11 +1,17 @@
 import { trackPromise } from 'react-promise-tracker';
-import { sendServer } from './utils';
+import { sendServerWithCookie } from './utils';
+import api from '../api/api';
 
 const ProductService = {
   getAllProducts: () =>
-    trackPromise(sendServer('allProductCookie', '/product')),
+    trackPromise(sendServerWithCookie('allProductCookie', '/product')),
   getProductById: (id) =>
-    trackPromise(sendServer('productDetail', `/product/${id}`))
+    trackPromise(sendServerWithCookie('productDetail', `/product/${id}`)),
+  addCar: (color, store, id) => {
+    const param = { color, store, id };
+    const url = '/cart';
+    return trackPromise(api.post(url, param));
+  }
 };
 
 export default ProductService;
