@@ -160,7 +160,7 @@ function Details(props) {
         <button
           type="button"
           //   onClick={() => comprar()}
-          className="btn btn-outline-primary w-40"
+          className="btn btn-outline-primary w-40 float-end"
         >
           Añadir
         </button>
