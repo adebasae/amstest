@@ -4,10 +4,9 @@ import loadingGif from '../loader.gif';
 
 function Loading() {
   const { promiseInProgress } = usePromiseTracker();
-
   const loading = () =>
     promiseInProgress && (
-      <div className="modal modal--small is-active loading">
+      <div id="overlay" className="modal modal--small is-active loading">
         <img src={loadingGif} alt="loading" />
       </div>
     );
