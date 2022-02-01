@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Detail from '../components/Detail';
 import ProductService from '../services/ProductService';
 import useAppContext from '../hooks/useAppContext';
+import variables from '../assets/scss/01_settings/_settings.variables.scss';
 
 const coloresBD = [
   { label: 'Azul', value: '1' },
@@ -22,6 +23,27 @@ function Details(props) {
   const { match } = props;
   const [detail, setDetail] = useState();
   const { setCarCount, carCount } = useAppContext();
+
+  const CSS = {
+    backgroundColor: variables.colorPrincipal
+  };
+
+  const colourStyles = {
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      // const color = chroma(data.color);
+      console.log({ data, isDisabled, isFocused, isSelected });
+      const { backgroundColor } = CSS;
+
+      return {
+        ...styles,
+
+        backgroundColor: isSelected
+          ? `${backgroundColor}`
+          : styles.backgroundColor,
+        color: 'black'
+      };
+    }
+  };
 
   // Para cambio de idioma la internacionalización se hace a estas variables
 
@@ -109,6 +131,7 @@ function Details(props) {
           }}
           placeholder="Seleccione Almacenamiento..."
           value={selectedStore}
+          styles={colourStyles}
         />
 
         <button
