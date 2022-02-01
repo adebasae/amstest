@@ -60,7 +60,7 @@ function ListProduct() {
 
   const productList = () =>
     currentItems.length === 0 ? (
-      <p>poner spinner</p>
+      <p>Cargando...</p>
     ) : (
       currentItems.map(({ imagen, description, marca, modelo, precio, id }) => (
         <Card
