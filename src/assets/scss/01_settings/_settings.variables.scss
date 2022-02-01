@@ -1,3 +1,9 @@
+$color-principal: #0d6efd;
+
+:export {
+  colorPrincipal: $color-principal;
+}
+
 /*
 ===========================================
 ==  Paleta de colores  ====================
@@ -47,7 +53,7 @@ $colors: (
   brand: $brand,
   green: $ok,
   warning: $ok,
-  error: $error,
+  error: $error
 );
 
 /*
@@ -63,14 +69,14 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1245px,
+  xxl: 1245px
 );
 
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1310px,
+  xl: 1310px
 );
 
 $grid-columns: 12;
@@ -80,7 +86,7 @@ $grid-gutter-widths: (
   sm: $grid-gutter-width-base,
   md: $grid-gutter-width-base,
   lg: $grid-gutter-width-base,
-  xl: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
 );
 
 // breakpoints para typi
@@ -89,7 +95,7 @@ $breakpoints: (
   sm: map-get($grid-breakpoints, sm),
   md: map-get($grid-breakpoints, md),
   lg: map-get($grid-breakpoints, lg),
-  xl: map-get($grid-breakpoints, xl),
+  xl: map-get($grid-breakpoints, xl)
 );
 
 // breakpoint aliases
@@ -106,36 +112,36 @@ $only-down-desktop: '<xl';
 $bp-aliases: (
   1: (
     'mobile-large',
-    $mobile-large,
+    $mobile-large
   ),
   2: (
     'tablet',
-    $tablet,
+    $tablet
   ),
   3: (
     'desktop',
-    $desktop,
+    $desktop
   ),
   4: (
     'desktop-large',
-    $desktop-large,
+    $desktop-large
   ),
   5: (
     'only-mobile-small',
-    $only-mobile-small,
+    $only-mobile-small
   ),
   6: (
     'only-mobile',
-    $only-mobile,
+    $only-mobile
   ),
   7: (
     'only-mobile-tablet',
-    $only-mobile-tablet,
+    $only-mobile-tablet
   ),
   8: (
     'only-down-desktop',
-    $only-down-desktop,
-  ),
+    $only-down-desktop
+  )
 );
 
 /*
@@ -146,7 +152,7 @@ $bp-aliases: (
 
 $modularscale: (
   base: 16px,
-  ratio: 1.125,
+  ratio: 1.125
 );
 
 $font-family-base: 'Avant', Reboto, Corbel, Verdana, sans-serif;
@@ -160,89 +166,89 @@ $typi: (
   xtiny: (
     null: (
       11px,
-      12px,
-    ),
+      12px
+    )
   ),
   tiny: (
     null: (
       12px,
-      16px,
-    ),
+      16px
+    )
   ),
   small: (
     null: (
       14px,
-      18px,
-    ),
+      18px
+    )
   ),
   base: (
     null: (
       16px,
-      22px,
-    ),
+      22px
+    )
   ),
   medium: (
     null: (
       18px,
-      24px,
-    ),
+      24px
+    )
   ),
   h4: (
     null: (
       20px,
-      24px,
-    ),
+      24px
+    )
   ),
   h3: (
     null: (
       22px,
-      28px,
+      28px
     ),
     md: (
       24px,
-      32px,
-    ),
+      32px
+    )
   ),
   h2: (
     null: (
       24px,
-      32px,
+      32px
     ),
     md: (
       32px,
-      36px,
-    ),
+      36px
+    )
   ),
   h1: (
     null: (
       28px,
-      32px,
+      32px
     ),
     md: (
       42px,
-      46px,
-    ),
+      46px
+    )
   ),
   hero: (
     null: (
       32px,
-      36px,
+      36px
     ),
     md: (
       48px,
-      50px,
-    ),
+      50px
+    )
   ),
   especial: (
     null: (
       85px,
-      90px,
+      90px
     ),
     md: (
       96px,
-      96px,
-    ),
-  ),
+      96px
+    )
+  )
 );
 
 /*
@@ -266,7 +272,7 @@ $spacing: (
   extrahuge: 96px,
   giant: 128px,
   extragiant: 192px,
-  superhero: 256px,
+  superhero: 256px
 );
 
 /*

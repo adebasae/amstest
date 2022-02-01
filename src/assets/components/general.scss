@@ -13,3 +13,23 @@
 .select:hover {
   cursor: pointer;
 }
+
+button:hover {
+  cursor: pointer !important;
+
+  color: white !important;
+  background-color: $color-principal !important;
+}
+
+button {
+  color: $color-principal !important;
+  border-color: $color-principal !important;
+}
+
+.css-1pahdxg-control {
+  border-color: $color-principal !important;
+}
+
+.css-1pahdxg-control:hover {
+  border-color: $color-principal !important;
+}
