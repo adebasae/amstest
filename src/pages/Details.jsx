@@ -22,7 +22,7 @@ const storeBD = [
 function Details(props) {
   const { match } = props;
   const [detail, setDetail] = useState();
-  const { setCarCount, carCount } = useAppContext();
+  const { setCarCount } = useAppContext();
 
   const CSS = {
     backgroundColor: variables.colorPrincipal
@@ -64,7 +64,8 @@ function Details(props) {
     ProductService.addCar(parseInt(color, 10), parseInt(store, 10), id).then(
       (res) => {
         if (res === undefined) return;
-        setCarCount(carCount + res.data.count);
+
+        setCarCount(res.data.count);
       }
     );
   };
