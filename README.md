@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Data
+
+It's in data folder
+
+## Git
+
+You can see the use of Git flow
+
+## Configuration
+
+src/assets/scss/01_settings/\_settings.variables you can for example change the main color of the app $color-principal
+
 ## Available Scripts
 
 In the project directory, you can run:
