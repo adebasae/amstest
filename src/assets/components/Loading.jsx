@@ -6,7 +6,7 @@ function Loading() {
   const { promiseInProgress } = usePromiseTracker();
   const loading = () =>
     promiseInProgress && (
-      <div id="overlay" className="modal modal--small is-active loading">
+      <div id="overlay">
         <img src={loadingGif} alt="loading" />
       </div>
     );
