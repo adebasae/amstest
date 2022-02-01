@@ -9,6 +9,7 @@ It's in data folder
 ## Git
 
 You can see the use of Git flow
+Root Branch -> developer
 
 ## Configuration
 
