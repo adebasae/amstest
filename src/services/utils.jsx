@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie';
 import api from '../api/api';
 
 const SECOND = 60;
-const MINUTES = 1;
+const MINUTES = 60;
 const TIME_COOKIE = SECOND * MINUTES;
 
 export const removeCookie = (name) => {

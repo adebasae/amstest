@@ -9,6 +9,7 @@ import Logo from '../assets/images/Logo.png';
 import Carrito from '../assets/images/carrito.png';
 import Perfil from '../assets/images/perfil.png';
 import useAppContext from '../hooks/useAppContext';
+import Breadcrumbs from './Breadcumbs';
 
 function Header() {
   const { carCount } = useAppContext();
@@ -23,7 +24,9 @@ function Header() {
             style={{ width: 60, marginTop: -7, marginLeft: 26 }}
           />
         </Navbar.Brand>
-
+        <hr />
+        <Breadcrumbs />
+        <hr />
         <div role="navigation" className="d-flex order-nav">
           <span style={{ marginTop: '3px', marginRight: '10px' }}>
             Bienvenido
