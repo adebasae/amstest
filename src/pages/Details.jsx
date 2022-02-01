@@ -56,7 +56,7 @@ function Details(props) {
     ProductService.getProductById(match.params.id).then((res) => {
       setDetail(res.data);
     });
-  }, []);
+  }, [match]);
 
   if (detail === undefined) return NO_DETAILS;
 
