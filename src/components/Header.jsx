@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
-// import Nav from 'react-bootstrap/Nav';
+import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
 import Logo from '../assets/images/Logo.png';
 
@@ -27,20 +27,30 @@ function Header() {
         <hr />
         <Breadcrumbs />
         <hr />
-        <div role="navigation" className="d-flex order-nav">
-          <span style={{ marginTop: '3px', marginRight: '10px' }}>
-            Bienvenido
-          </span>
-          <div>
-            <Image alt="Perfil" src={Perfil} className="header-btn-right" />
-          </div>
-          <div>
-            <Image alt="Carrito" src={Carrito} className="header-btn-right" />
-            <span className="carNumber">{carCount}</span>
-          </div>
-        </div>
-
         <Navbar.Toggle style={{ order: 0 }} aria-controls="navbarScroll" />
+
+        <Navbar.Collapse id="navbarScroll">
+          <div role="navigation" className="d-flex order-nav">
+            <span style={{ marginTop: '3px', marginRight: '10px' }}>
+              Bienvenido
+            </span>
+            <div>
+              <Image alt="Perfil" src={Perfil} className="header-btn-right" />
+            </div>
+            <Nav
+              className="mr-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+            >
+              <Nav.Link className="px-4" as={Link} to="/">
+                Productos
+              </Nav.Link>
+            </Nav>
+            <div>
+              <Image alt="Carrito" src={Carrito} className="header-btn-right" />
+              <span className="carNumber">{carCount}</span>
+            </div>
+          </div>
+        </Navbar.Collapse>
       </Navbar>
     </header>
   );
